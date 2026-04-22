@@ -1,0 +1,20 @@
+{
+  "name": "devmentor",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/FK78/DevMentor#readme",
+  "bugs": {
+    "url": "https://github.com/FK78/DevMentor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FK78/DevMentor.git"
+  },
+  "license": "MIT",
+  "author": "FK78",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

@@ -1,0 +1,11 @@
+services:
+  postgres:
+    secrets:
+      - postgres_user
+      - postgres_password
+
+secrets:
+  postgres_user:
+    external: true
+  postgres_password:
+    external: true
