@@ -8,10 +8,22 @@ export function getById(id) {
   return db.one("SELECT * FROM users WHERE id = $1", [id]);
 }
 
-export function create({ username, email, password, role }) {
+export function create(
+  { username, email },
+  { hash, salt, memory, passes, parallelism, tagLength },
+) {
   return db.one(
-    "INSERT INTO users (username, email, password, role) VALUES ($1, $2, $3, $4) RETURNING *",
-    [username, email, password, role],
+    "INSERT INTO users (username, email, password_hash, password_salt, password_memory, password_passes, password_parallelism, password_tag_length) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id, username, email",
+    [
+      username,
+      email,
+      hash,
+      salt,
+      memory,
+      passes,
+      parallelism,
+      tagLength,
+    ],
   );
 }
 
