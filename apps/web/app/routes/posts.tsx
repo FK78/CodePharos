@@ -1,5 +1,6 @@
 import type { Route } from "./+types/posts";
 import { apiFetch } from "../lib/api";
+import { NavBar } from "../components/NavBar";
 import { PostCard, type Post } from "../components/PostCard";
 
 export function meta({}: Route.MetaArgs) {
@@ -14,20 +15,26 @@ export async function clientLoader() {
 }
 
 export function HydrateFallback() {
-  return <p className="p-6">Loading posts...</p>;
+  return <p className="p-6 text-[#E8E0D4]/80">Loading posts...</p>;
 }
 
 export default function Posts({ loaderData }: Route.ComponentProps) {
   const posts = loaderData as Post[];
 
   return (
-    <main className="mx-auto max-w-3xl p-6">
-      <h1 className="text-3xl font-bold">Posts</h1>
-      <div className="mt-6 space-y-4">
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
-      </div>
-    </main>
+    <>
+      <NavBar />
+      <main className="mx-auto max-w-3xl p-6">
+        <p className="text-sm font-semibold uppercase text-[#F5A623]">
+          Community
+        </p>
+        <h1 className="mt-2 text-3xl font-bold text-[#FDE8C8]">Posts</h1>
+        <div className="mt-6 space-y-4">
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </div>
+      </main>
+    </>
   );
 }
