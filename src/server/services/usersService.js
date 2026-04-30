@@ -1,4 +1,5 @@
 import { argon2, randomBytes, timingSafeEqual } from "node:crypto";
+import jsonwebtoken from "jsonwebtoken";
 
 export function hashPassword(password, passed_salt) {
   const salt = passed_salt ? passed_salt : randomBytes(16);
@@ -37,4 +38,10 @@ export function compareHash(storedHash, generatedHash) {
   return (
     stored.length === generated.length && timingSafeEqual(stored, generated)
   );
+}
+
+export function issueJWT({id, role}) {
+  return jsonwebtoken.sign({ id, role }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1d",
+  });
 }
